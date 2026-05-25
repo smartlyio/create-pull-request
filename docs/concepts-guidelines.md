@@ -40,7 +40,7 @@ For each [event type](https://docs.github.com/en/actions/reference/events-that-t
 The default can be overridden by specifying a `ref` on checkout.
 
 ```yml
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: develop
 ```
@@ -77,7 +77,7 @@ jobs:
   example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 ```
 
 There may be use cases where it makes sense to execute the workflow on a branch that is not the base of the pull request. In these cases, the base branch can be specified with the `base` action input. The action will attempt to rebase changes made during the workflow on to the actual base.
@@ -179,7 +179,7 @@ This action uses [ncc](https://github.com/vercel/ncc) to compile the Node.js cod
 Checking out a branch from a different repository from where the workflow is executing will make *that repository* the target for the created pull request. In this case, the `GITHUB_TOKEN` will not work and one of the other [token options](../README.md#token) must be used.
 
 ```yml
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.PAT }}
           repository: owner/repo
@@ -209,7 +209,7 @@ How to use SSH (deploy keys) with create-pull-request action:
 
 ```yml
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -237,7 +237,7 @@ It will use their own fork to push code and create the pull request.
 6. As shown in the following example workflow, set the `push-to-fork` input to the full repository name of the fork.
 
 ```yaml
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Make changes to pull request here
 
@@ -279,7 +279,7 @@ The following is an example of pushing to a fork using GitHub App tokens.
           owner: owner
           repositories: fork-of-repo
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Make changes to pull request here
 
@@ -324,7 +324,7 @@ GitHub App generated tokens can be configured with fine-grained permissions and 
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Make changes to pull request here
 
@@ -349,7 +349,7 @@ In the following example, a pull request is being created in remote repo `owner/
           owner: owner
           repositories: repo
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ steps.generate-token.outputs.token }} # necessary if the repo is private
           repository: owner/repo
@@ -381,7 +381,7 @@ The action can sign commits as `github-actions[bot]` when using the repository's
 In this example the `token` input is not supplied, so the action will use the repository's default `GITHUB_TOKEN`. This will sign commits as `github-actions[bot]`.
 ```yaml
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Make changes to pull request here
 
@@ -394,7 +394,7 @@ In this example the `token` input is not supplied, so the action will use the re
 In this example, the `token` input is generated using a GitHub App. This will sign commits as `<application-name>[bot]`.
 ```yaml
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: actions/create-github-app-token@v1
         id: generate-token
@@ -436,7 +436,7 @@ The action can use GPG to sign commits with a GPG key that you generate yourself
 
 ```yaml
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: crazy-max/ghaction-import-gpg@v5
         with:
@@ -473,7 +473,7 @@ jobs:
       - name: Install dependencies
         run: apk --no-cache add git
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Make changes to pull request here
 
@@ -496,7 +496,7 @@ jobs:
           add-apt-repository -y ppa:git-core/ppa
           apt-get install -y git
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Make changes to pull request here
 
